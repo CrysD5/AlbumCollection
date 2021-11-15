@@ -48,7 +48,14 @@ namespace album_collection.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult
+        public ActionResult<IEnumerable<Artist>> Delete(int id)
+        {
+            var artist = _db.Artists.Find(id);
+            _db.Artists.Remove(artist);
+            _db.SaveChanges();
+
+            return _db.Artists.ToList();
+        }
 
     }
 }
