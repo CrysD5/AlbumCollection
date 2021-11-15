@@ -1,4 +1,5 @@
 import * as CONSTANTS from "../components/constants";
+import api from "../api/api-actions";
 
 export default {
     displayArtists,
@@ -7,10 +8,8 @@ export default {
 }
 
 /*artist data goes here*/
-export function displayArtists() {
-    CONSTANTS.title.innerText = "All Artists";
-    //API INFO goes here
-    CONSTANTS.content.innerHTML = `
+export function displayArtists(artists) {
+    return `
     <section id='addArtist'>
         <--! ADD ARTIST GOES HERE !-->
         <label><strong>Name: </strong></label>
@@ -20,15 +19,17 @@ export function displayArtists() {
 
    
     <ol>
-        //artists.map(artist => {
-            list here
-        });
+        ${artists.map(artist => {
+            return `
+                <li>
+                    <h4>
+                        ${artist.name}
+                    </h4>
+                </li>
+            `;
+        }).join('')}
     </ol>
     `;
-    //        ${sldkfjlskdjglkjl} <= correct format
-    //returns html to display all artists
-
-    //return artist
 }
 
 export function SetupDeleteButton() {

@@ -7,24 +7,24 @@ export default {
 }
 
 //argument album
-function displayAlbums() {
-    CONSTANTS.title.innerText = "All Albums";
-    CONSTANTS.tabTitle.innerText = "All Albums";
-    //API Call goes here
-    CONSTANTS.content.innerHTML = `
+function displayAlbums(albums) {
+    return `
     <section id='addAlbum'>
-    <--! ADD ALBUM GOES HERE !-->
-    <label><strong>Name: </strong></label>
-    <input type='text' id='albumTitle' placeholder='Enter the album's title.' />
-    <input type='text' id='albumSong' placeholder='Enter the first song on the album.' />
-    <button id='btnAddAlbum'>Add Album</button>
-</section>
-
+        <--! ADD ALBUM GOES HERE !-->
+        <label><strong>Name: </strong></label>
+        <input type='text' id='albumTitle' placeholder='Enter the album's title.' />
+        <input type='text' id='albumSong' placeholder='Enter the first song on the album.' />
+        <button id='btnAddAlbum'>Add Album</button>
+    </section>
 
 <ol>
-    //album.map(album => {
-        list here
-    });
+    ${albums.map(album => {
+        return `
+            <h4>
+                ${album.title}
+            </h4>
+        `;
+    }).join('')}
 </ol>
     `
 }
