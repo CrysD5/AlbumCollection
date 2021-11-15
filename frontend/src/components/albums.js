@@ -1,4 +1,5 @@
 import * as CONSTANTS from "../components/constants";
+import api from "../api/api-actions";
 
 export default {
     displayAlbums,
@@ -29,7 +30,7 @@ function displayAlbums(albums) {
     `
 }
 
-function SetupAlbumDelete(){
+function SetupAlbumDelete() {
     //Steps:
     //1. Query selector all buttons with artist_delete class
     //2. Use foreach loop to add eventlistener to all buttons
@@ -38,7 +39,19 @@ function SetupAlbumDelete(){
 
 function SetupAddAlbum() {
     const btnAddAlbum = document.getElementById("btnAddAlbum");
-    btnAddAlbum.addEventListener("click", function(){
+    btnAddAlbum.addEventListener("click", function () {
         console.log("Add album button hooked up!");
-    })
+        const newAlbum = {
+            Title: document.getElementById("albumTitle").value
+        }
+
+        api.postRequest(CONSTANTS.AlbumAPIURL, newAlbum, data => {
+            CONSTANTS.title.innerText = "Album Details";
+            CONSTANTS.tabTitle.innerText = "Album Details";
+            CONSTANTS.content.innerHTML = `
+                Album Details page goes here
+            `;
+
+        });
+    });
 }
