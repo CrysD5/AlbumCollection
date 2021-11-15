@@ -56,6 +56,6 @@ namespace album_collection.Controllers
 
             return _db.Artists.ToList();
         }
-
+  
     }
 }

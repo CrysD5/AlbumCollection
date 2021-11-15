@@ -36,7 +36,7 @@ namespace album_collection.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Artist> Put(int id, [FromBody]Song song)
+        public ActionResult<Song> Put(int id, [FromBody]Song song)
         {
             if (song.Id == id)
             {
@@ -45,6 +45,14 @@ namespace album_collection.Controllers
             }
 
             return song;
+        }
+
+        [HttpDelete ("{id}")]
+        public ActionResult<List<Artist>> Delete(int id)
+        {
+            var artist = _db.Artists.Find(id);
+            _db.Artists.Remove(artist);
+            return _db.Artists.ToList();
         }
     }
 }

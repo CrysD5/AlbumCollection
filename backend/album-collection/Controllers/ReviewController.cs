@@ -19,9 +19,38 @@ namespace album_collection.Controllers
             _db = db;
         }
 
+        [HttpPost]
+        public ActionResult<Review> Post([FromBody] Review review)
+        {
+            _db.Reviews.Add(review);
+            _db.SaveChanges();
+
+            return review;
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Review> Put(int id, [FromBody] Review review)
+        {
+            if (review.Id == id)
+            {
+                _db.Reviews.Update(review);
+                _db.SaveChanges();
+            }
+
+            return review;
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<Review>> Get()
         {
+            return _db.Reviews.ToList();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<List<Review>> Delete(int id)
+        {
+            var review = _db.Reviews.Find(id);
+            _db.Reviews.Remove(review);
             return _db.Reviews.ToList();
         }
     }

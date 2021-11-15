@@ -45,6 +45,14 @@ namespace album_collection.Controllers
 
             return album;
         }
+        [HttpDelete("{id}")]
+        public ActionResult<List<Album>> Delete(int id)
+        {
+            var album = _db.Albums.Find(id);
+            _db.Albums.Remove(album);
+            return _db.Albums.ToList();
+        }
+
     }
 
 }
