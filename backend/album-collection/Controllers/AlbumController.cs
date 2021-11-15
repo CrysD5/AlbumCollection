@@ -24,6 +24,27 @@ namespace album_collection.Controllers
         {
             return _db.Albums.ToList();
         }
+
+        [HttpPost]
+        public ActionResult<Album> Post([FromBody]Album album)
+        {
+        _db.Albums.Add(album);
+        _db.SaveChanges();
+
+        return album;
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Album> Put(int id, [FromBody]Album album)
+        {
+            if (album.Id == id)
+            {
+                _db.Albums.Update(album);
+                _db.SaveChanges();
+            }
+
+            return album;
+        }
     }
 
 }
