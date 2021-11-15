@@ -1,6 +1,7 @@
 import * as CONSTANTS from "../components/constants";
 import Artists from "../components/artists";
 import Albums from "../components/albums";
+import api from "../api/api-actions";
 
 export default {
     setUpNavBar,
@@ -32,11 +33,14 @@ function setupHome(){
 
 function setupArtists() {
     const btnArtists = document.getElementById("navArtists");
-    CONSTANTS.tabTitle.innerText = "All Artists";
-    btnArtists.addEventListener("click", function() {
-        //API CALL GOES HERE
-        Artists.displayArtists();
-        Artists.SetupAddArtist();
+    btnArtists.addEventListener("click", function() {  
+        console.log("Artists clicked!");
+        api.getRequest(CONSTANTS.ArtistAPIURL, data => {
+            CONSTANTS.title.innerText = "All Artists";
+            CONSTANTS.tabTitle.innerText = "All Artists";
+            CONSTANTS.content.innerHTML = Artists.displayArtists(data);
+            Artists.SetupAddArtist();
+        })
     })
 }
 
@@ -44,8 +48,11 @@ function setupAlbums() {
     const btnAlbums = document.getElementById("navAlbums");
     btnAlbums.addEventListener("click", function(){
         console.log("Album Display button hooked up!");
-        //API CALL GOES HERE
-        Albums.displayAlbums();
-        Albums.SetupAddAlbum();
+        api.getRequest(CONSTANTS.AlbumAPIURL, data => {
+            CONSTANTS.title.innerText = "All Albums";
+            CONSTANTS.tabTitle.innerText = "Albums";
+            CONSTANTS.content.innerHTML = Albums.displayAlbums(data);
+            Albums.SetupAddAlbum();
+        })
     })
 }
