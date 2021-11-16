@@ -53,7 +53,7 @@ function setupAlbums() {
             CONSTANTS.title.innerText = "All Albums";
             CONSTANTS.tabTitle.innerText = "Albums";
             CONSTANTS.content.innerHTML = Albums.displayAlbums(data);
-            Albums.SetupAddAlbum();
+            Albums.setupAlbumLinks();
         })
     })
 }
