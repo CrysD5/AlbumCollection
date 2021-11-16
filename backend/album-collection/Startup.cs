@@ -36,6 +36,9 @@ namespace album_collection
             services.AddControllers().AddNewtonsoftJson(o =>
             {
                 o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                o.SerializerSettings.NullValueHandling
+                            = NullValueHandling.Ignore;
+
             });
             services.AddDbContext<AlbumCollectionContext>();
         }
@@ -46,6 +49,10 @@ namespace album_collection
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
             }
 
             app.UseCors("MyPolicy");

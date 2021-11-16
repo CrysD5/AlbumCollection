@@ -4,14 +4,15 @@ import api from "../api/api-actions";
 export default {
     displayArtists,
     SetupDeleteButton,
-    SetupAddArtist
+    SetupAddArtist,
+    setupArtistLinks
 }
 
 export function displayArtists(artists) {
     return `
     <section id='addArtist'>
         <label><strong>Name: </strong></label>
-        <input type='text' id='artistName' placeholder='Enter the artist's name.' />
+        <input type='text' id='artistName' placeholder='Enter the artist name.' />
         <button id='btnAddArtist'>Add Artist</button>
     </section>
 
@@ -21,7 +22,8 @@ export function displayArtists(artists) {
             return `
                 <li>
                     <h4>
-                        ${artist.name}
+                        <span class="artistName">${artist.name}</span>
+                        <input type='hidden' value='${artist.id}' />
                     </h4>
                 </li>
             `;
@@ -39,10 +41,30 @@ function SetupDeleteButton() {
 
 //DON'T FORGET TO ALSO CHANGE SETUPADDALBUM AS WELL IF THIS API CALL DOESN'T WORK LOL
 
+function setupArtistLinks() {
+    let artistLinks = document.querySelectorAll(".artistName");
+    artistLinks.forEach(artistLink => {
+
+        artistLink.addEventListener("click", function(evt){
+
+            let artistId = this.nextElementSibling.value;
+            console.log("Artist ID:" + artistId);
+
+            //API Call
+            api.getRequest(CONSTANTS.ArtistAPIURL + artistId, data => {
+                //console.log(data);
+                CONSTANTS.content.innerHTML = `
+                Artist Details Page goes here!
+                `
+                //also our setupEditBtn function goes here as well! :)
+            });
+        });
+    });
+}
+
 function SetupAddArtist() {
     const btnAddArtist = document.getElementById("btnAddArtist");
     btnAddArtist.addEventListener("click", function(){
-        console.log("Add Artist button hooked up!");
         const newArtist = {
             Name: document.getElementById("artistName").value
         }

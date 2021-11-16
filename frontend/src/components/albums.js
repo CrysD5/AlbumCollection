@@ -3,22 +3,15 @@ import api from "../api/api-actions";
 
 export default {
     displayAlbums,
-    SetupAddAlbum,
+    SetupAlbumDelete,
     SetupAddAlbum
 }
 
 //argument album
 function displayAlbums(albums) {
     return `
-    <section id='addAlbum'>
-        <--! ADD ALBUM GOES HERE !-->
-        <label><strong>Name: </strong></label>
-        <input type='text' id='albumTitle' placeholder='Enter the album's title.' />
-        <input type='text' id='albumSong' placeholder='Enter the first song on the album.' />
-        <button id='btnAddAlbum'>Add Album</button>
-    </section>
 
-<ol>
+ <ol>
     ${albums.map(album => {
         return `
             <h4>
@@ -29,6 +22,16 @@ function displayAlbums(albums) {
 </ol>
     `
 }
+
+//Create album code here - needs to be moved to individual artist page.
+/*     
+    <section id='addAlbum'>
+         <label><strong>Name: </strong></label>
+         <input type='text' id='albumTitle' placeholder='Enter the album title.' />
+         <input type='text' id='albumSong' placeholder='Enter the first song on the album.' />
+         <button id='btnAddAlbum'>Add Album</button>
+    </section> 
+*/
 
 function SetupAlbumDelete() {
     //Steps:

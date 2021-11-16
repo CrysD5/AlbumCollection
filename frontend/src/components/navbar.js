@@ -39,6 +39,7 @@ function setupArtists() {
             CONSTANTS.title.innerText = "All Artists";
             CONSTANTS.tabTitle.innerText = "All Artists";
             CONSTANTS.content.innerHTML = Artists.displayArtists(data);
+            Artists.setupArtistLinks();
             Artists.SetupAddArtist();
         })
     })
