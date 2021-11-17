@@ -1,5 +1,6 @@
 import * as CONSTANTS from "../components/constants";
 import api from "../api/api-actions";
+import artistDetails from "./artistDetails";
 
 export default {
     displayArtists,
@@ -26,11 +27,14 @@ export function displayArtists(artists) {
                         <input type='hidden' value='${artist.id}' />
                     </h4>
                 </li>
+                
             `;
         }).join('')}
     </ol>
     `;
 }
+
+
 
 function SetupDeleteButton() {
     //Steps:
@@ -45,17 +49,17 @@ function setupArtistLinks() {
     let artistLinks = document.querySelectorAll(".artistName");
     artistLinks.forEach(artistLink => {
 
-        artistLink.addEventListener("click", function(evt){
+        artistLink.addEventListener("click", function (evt) {
 
             let artistId = this.nextElementSibling.value;
             console.log("Artist ID:" + artistId);
 
             //API Call
             api.getRequest(CONSTANTS.ArtistAPIURL + artistId, data => {
-                //console.log(data);
-                CONSTANTS.content.innerHTML = `
-                Artist Details Page goes here!
-                `
+                // console.log(data);
+                CONSTANTS.content.innerHTML = artistDetails.ArtistDetails(data);
+                artistDetails.setupNavToAlbum();
+
                 //also our setupEditBtn function goes here as well! :)
             });
         });
@@ -64,7 +68,7 @@ function setupArtistLinks() {
 
 function SetupAddArtist() {
     const btnAddArtist = document.getElementById("btnAddArtist");
-    btnAddArtist.addEventListener("click", function(){
+    btnAddArtist.addEventListener("click", function () {
         const newArtist = {
             Name: document.getElementById("artistName").value
         }
@@ -74,9 +78,8 @@ function SetupAddArtist() {
             CONSTANTS.tabTitle.innerText = "Artist Details";
             //Display individual artist function is called here.
             //Setup edit button function also goes here.
-            CONSTANTS.content.innerHTML = `
-                Artist Details page goes here!
-            `;
+            CONSTANTS.content.innerHTML = artistDetails.ArtistDetails(data);
+            artistDetails.setupNavToAlbum();
         });
     });
 

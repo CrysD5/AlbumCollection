@@ -4,3 +4,5 @@ export const tabTitle = document.getElementById("tabTitle");
 
 export const ArtistAPIURL = 'https://localhost:44313/api/artist/';
 export const AlbumAPIURL = 'https://localhost:44313/api/album/';
+export const ReviewAPIURL = 'https://localhost:44313/api/review/';
+export const SongAPIURL = "https://localhost:44313/api/song";
