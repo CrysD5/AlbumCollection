@@ -19,7 +19,7 @@ function displayAlbums(albums) {
             <span class = "albumDetails">
                 ${album.title}
             </span>
-            <input type='hidden' value='${album.id}' />
+            <input type='hidden' value='${album.id}' /> 
             </h4>
         `;
     }).join('')}
