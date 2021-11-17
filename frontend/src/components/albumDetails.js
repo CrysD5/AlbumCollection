@@ -14,10 +14,28 @@ return`
 <p>Artist: ${album.artist.name}</p>
 <p>Record Label: ${album.recordLabel}</p>
 <p>Release Year:  ${album.releaseYear}</p>
-<p>Genre: ${album.genre}</p>
-<ol>
+<p>Genre: ${album.genre}</p> 
 
-</ol>
+Reviews: ${album.reviews.map(review => {
+            return `
+            
+                    <ol>
+    <li>${review.albumId.title}</li>
+        <ul>
+            <li>${review.reviewerName}
+            <ul>
+            <li>${review.content}</li>
+            <li>${review.reviewDate}</li>
+            </ul>
+            </li>
+        </ul>
+    </li>
+</ol>              
+             `
+
+
+        }).join('')
+    }
 
 `
 

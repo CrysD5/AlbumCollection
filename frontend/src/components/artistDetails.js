@@ -1,6 +1,6 @@
  import * as CONSTANTS from "./constants";
  import api from "../api/api-actions";
- import artists from "./artists";
+ import artistDetails from "./artistDetails";
 
  export default {
      ArtistDetails
