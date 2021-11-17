@@ -59,6 +59,7 @@ function setupAlbums() {
             CONSTANTS.tabTitle.innerText = "Albums";
             CONSTANTS.content.innerHTML = Albums.displayAlbums(data);
             Albums.setupAlbumLinks();
+            Albums.setupAlbumDeleteButton();
         })
     })
 }
