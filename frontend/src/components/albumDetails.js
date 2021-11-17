@@ -10,46 +10,39 @@ function albumDetails(album)
 {
     return ` 
         <h1>Album Details</h1>
-        <h4>Album Title: ${album.title}</h4>
-        <p>Artist: ${album.artist.name}</p>
-        <ol>Songs: ${album.songs.map(song => {
-            return `
-            <li>${song.title}</li>
-            </ol>`
-        }).join('') }
+        <h2>Album Title: ${album.title}</h2>
+        <h3>Artist: ${album.artist.name}</h3>
         <p>Record Label: ${album.recordLabel}</p>
         <p>Release Year:  ${album.releaseYear}</p>
         <p>Genre: ${album.genre}</p>
+
+        <h4>Songs:</h4> ${album.songs.map(song => {
+            return `
+            <ol>
+                <li>${song.title}</li>
+            </ol>
+            ` 
+        }).join('')}
+
+        <h1>Reviews:</h1> ${album.reviews.map(review => {
+            return `
+                <ul>
+                    <li>${review.reviewerName}
+                        <ul>
+                            <li>${review.content}</li>
+                            <li>${review.reviewDate}</li>
+                        </ul>
+                    </li>
+                </ul>          
+            `;
+        }).join('')}
 
         <label>Reviewer Name:</label><input id="reviewerName" placeholder="Enter your name." />
         <label>Content:</label><input id="reviewContent" placeholder="Enter your review here." />
         <input type=hidden value="${album.id}" id="album_id" />
         <button id="btnAddReview">Add a review!</button>
-        `
+    `;
 }
-
-<ol>
-
-  Reviews: ${album.reviews.map(review => {
-              return `
-
-                      <ol>
-      <li>${review.albumId.title}</li>
-          <ul>
-              <li>${review.reviewerName}
-              <ul>
-              <li>${review.content}</li>
-              <li>${review.reviewDate}</li>
-              </ul>
-              </li>
-          </ul>
-      </li>
-</ol>              
-             `
-
-
-        }).join('')
-    }
 
 //Create review needs:
 //>>1. HTML representing the form to create a review. 
@@ -74,8 +67,8 @@ function addReview() {
         api.postRequest(CONSTANTS.ReviewAPIURL, newReview, data => {
             //Review Details page here!
             return `
-                Review details page goes here!
-            `;
+                Review details page goes here!;
+            `      
         });
     });
 }
