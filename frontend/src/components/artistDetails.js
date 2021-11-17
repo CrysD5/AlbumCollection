@@ -14,7 +14,7 @@ function artistDetails(artist) {
 
     console.log(artist);
 
-    if (artist.albums == null) {
+    if (artist.albums == null || artist.albums == undefined) {
         artist.albums = [];
     }
 
@@ -27,8 +27,8 @@ function artistDetails(artist) {
             <ol>
                 ${artist.albums.map(album => {
                     return `
-                    <li><span class="navToAlbum">${albums.title}</span>         
-                    <input type='hidden' value= '${albums.id}'/></li>
+                    <li><span class="navToAlbum">${album.title}</span>         
+                    <input type='hidden' value= '${album.id}'/></li>
                     `
                 }).join('')}
             </ol>
