@@ -5,18 +5,12 @@ import albumDetails from "./albumDetails";
 export default {
     displayAlbums,
     setupAlbumDeleteButton,
-    setupAlbumLinks,
-    setupAddAlbumButton
+    setupAlbumLinks
 }
 
 
 export function displayAlbums(albums) {
     return `
-    <section class='addAlbum'>
-    <label><strong>Name:</strong></label>
-    <input type='text' id='addAlbumName' placeholder='Enter album name' />
-    <button id='btnAddAlbum'>Add Album</button>
-    </section>
  <ol>
     ${albums.map(album => {
         return `
@@ -26,8 +20,7 @@ export function displayAlbums(albums) {
                 ${album.title}
             </span>
             <input type='hidden' value='${album.id}' />
-            <button id="${album.id}" class="albumDelete">
-            <i class="fas fa-trash-alt"></i></button>
+            <button id="${album.id}" class="albumDelete">delete</button>
             </h4>
         </li>
         `;
@@ -59,13 +52,13 @@ export function setupAlbumLinks() {
 export function setupAlbumDeleteButton(){
     let albumDeleteButtons = document.querySelectorAll(".albumDelete");
 
-    albumDeleteButtons.forEach(element => {
-        element.addEventListener('click', function(){
+    albumDeleteButtons.forEach(albumDeleteButton => {
+        albumDeleteButton.addEventListener('click', function(event){
             console.log("delete button clicked");
-            let id = element.id;
+            let albumId = event.target.id;
             
 
-            api.deleteRequest(CONSTANTS.AlbumAPIURL, id, data => {
+            api.deleteRequest(CONSTANTS.AlbumAPIURL, albumId, data => {
                 CONSTANTS.content.innerHTML = displayAlbums(data);
                 setupAlbumDeleteButton();
                 setupAlbumLinks();
@@ -74,17 +67,4 @@ export function setupAlbumDeleteButton(){
     });
 }
 
-export function setupAddAlbumButton(){
-    const btnAddAlbum = document.getElementById("btnAddAlbum");
-    btnAddAlbum.addEventListener("click", function (){
-        console.log("Add album button hooked up!");
-        const newAlbum = {
-            title: document.getElementById("addAlbumName").value
-        }
 
-        api.postRequest(CONSTANTS.AlbumAPIURL, newAlbum, data => {
-            CONSTANTS.title.innerText = "Album Details";
-            CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
-        });
-    });
-}
