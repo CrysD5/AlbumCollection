@@ -40,9 +40,8 @@ export function setupAlbumLinks() {
 
             //API Call
             api.getRequest(CONSTANTS.AlbumAPIURL + albumId, data => {
-                console.log(data);
-                CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
-                 
+                CONSTANTS.content.innerHTML = albumDetails.albumDetails(data);
+                 albumDetails.addReview();
                 //also our setupEditBtn function goes here as well! :)
             });
         });
@@ -66,5 +65,3 @@ export function setupAlbumDeleteButton(){
         });
     });
 }
-
-

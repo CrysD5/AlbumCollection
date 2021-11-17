@@ -1,5 +1,6 @@
 import * as CONSTANTS from "../components/constants";
 import api from "../api/api-actions";
+import artistDetails from "../components/artistDetails";
 
 export default {
     displayArtists,
@@ -13,6 +14,7 @@ export function displayArtists(artists) {
     <section id='addArtist'>
         <label><strong>Name: </strong></label>
         <input type='text' id='artistName' placeholder='Enter the artist name.' />
+        <input type='text' id='artistLabel' placeholder='Enter the artist record label.' />
         <button id='btnAddArtist'>Add Artist</button>
     </section>
 
@@ -52,11 +54,10 @@ function setupArtistLinks() {
 
             //API Call
             api.getRequest(CONSTANTS.ArtistAPIURL + artistId, data => {
-                //console.log(data);
-                CONSTANTS.content.innerHTML = `
-                Artist Details Page goes here!
-                `
-                //also our setupEditBtn function goes here as well! :)
+                console.log(data);
+                CONSTANTS.content.innerHTML = artistDetails.artistDetails(data);
+                artistDetails.SetupAddAlbum();
+                artistDetails.SetupEditButton();
             });
         });
     });
@@ -66,7 +67,8 @@ function SetupAddArtist() {
     const btnAddArtist = document.getElementById("btnAddArtist");
     btnAddArtist.addEventListener("click", function(){
         const newArtist = {
-            Name: document.getElementById("artistName").value
+            Name: document.getElementById("artistName").value,
+            ArtistLabel: document.getElementById("artistLabel").value
         }
 
         api.postRequest(CONSTANTS.ArtistAPIURL, newArtist, data => {
@@ -74,9 +76,8 @@ function SetupAddArtist() {
             CONSTANTS.tabTitle.innerText = "Artist Details";
             //Display individual artist function is called here.
             //Setup edit button function also goes here.
-            CONSTANTS.content.innerHTML = `
-                Artist Details page goes here!
-            `;
+            CONSTANTS.content.innerHTML = artistDetails.artistDetails(data);
+            artistDetails.SetupEditButton();
         });
     });
 
