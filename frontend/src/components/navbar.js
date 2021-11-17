@@ -3,6 +3,7 @@ import Artists from "../components/artists";
 import Albums from "../components/albums";
 import Reviews from "../components/reviews";
 import api from "../api/api-actions";
+import artistDetails from "./artistDetails";
 
 export default {
     setUpNavBar,
@@ -18,7 +19,7 @@ export function setUpNavBar(){
         <li id="navHome">Home</li>
         <li id="navArtists">Artists</li>
         <li id="navAlbums">Albums</li>
-        <li id="navReviews">Reviews</li>
+        
     </ul>
     `;
 }
@@ -44,6 +45,7 @@ function setupArtists() {
             CONSTANTS.content.innerHTML = Artists.displayArtists(data);
             Artists.setupArtistLinks();
             Artists.SetupAddArtist();
+            
         })
     })
 }

@@ -36,7 +36,7 @@
      let reviewLinks = document.querySelectorAll(".reviewrName");
      reviewLinks.forEach(reviewLink => {
 
-         reviewLinks.addEventListener("click", function(evt) {
+         reviewLink.addEventListener("click", function(evt) {
 
             let reviewId = this.nextElementSibling.value;
             console.log("Review ID: " + reviewId ); 

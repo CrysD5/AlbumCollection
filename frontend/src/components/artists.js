@@ -34,6 +34,8 @@ export function displayArtists(artists) {
     `;
 }
 
+
+
 function SetupDeleteButton() {
     //Steps:
     //1. Query selector all buttons with artist_delete class
@@ -56,6 +58,7 @@ function setupArtistLinks() {
             api.getRequest(CONSTANTS.ArtistAPIURL + artistId, data => {
                 // console.log(data);
                 CONSTANTS.content.innerHTML = artistDetails.ArtistDetails(data);
+                artistDetails.setupNavToAlbum();
 
                 //also our setupEditBtn function goes here as well! :)
             });
@@ -76,6 +79,7 @@ function SetupAddArtist() {
             //Display individual artist function is called here.
             //Setup edit button function also goes here.
             CONSTANTS.content.innerHTML = artistDetails.ArtistDetails(data);
+            artistDetails.setupNavToAlbum();
         });
     });
 
