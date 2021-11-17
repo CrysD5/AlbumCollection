@@ -2,6 +2,7 @@ import * as CONSTANTS from "../components/constants";
 import Artists from "../components/artists";
 import Albums from "../components/albums";
 import api from "../api/api-actions";
+import albums from "../components/albums";
 
 export default {
     setUpNavBar,
@@ -54,6 +55,7 @@ function setupAlbums() {
             CONSTANTS.tabTitle.innerText = "Albums";
             CONSTANTS.content.innerHTML = Albums.displayAlbums(data);
             Albums.setupAlbumLinks();
+            Albums.setupAlbumDeleteButton();
         })
     })
 }

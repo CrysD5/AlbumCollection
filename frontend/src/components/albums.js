@@ -4,30 +4,32 @@ import albumDetails from "./albumDetails";
 
 export default {
     displayAlbums,
-    SetupAlbumDelete,
+    setupAlbumDeleteButton,
     setupAlbumLinks
 }
 
-//argument album
-function displayAlbums(albums) {
-    return `
 
+export function displayAlbums(albums) {
+    return `
  <ol>
     ${albums.map(album => {
         return `
+        <li>
             <h4>
             <span class = "albumDetails">
                 ${album.title}
             </span>
             <input type='hidden' value='${album.id}' />
+            <button id="${album.id}" class="albumDelete">delete</button>
             </h4>
+        </li>
         `;
     }).join('')}
 </ol>
     `
 }
 
-function setupAlbumLinks() {
+export function setupAlbumLinks() {
     let albumLinks = document.querySelectorAll(".albumDetails");
         albumLinks.forEach(albumLink => {
 
@@ -38,7 +40,7 @@ function setupAlbumLinks() {
 
             //API Call
             api.getRequest(CONSTANTS.AlbumAPIURL + albumId, data => {
-                //console.log(data);
+                console.log(data);
                 CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
                  
                 //also our setupEditBtn function goes here as well! :)
@@ -47,38 +49,22 @@ function setupAlbumLinks() {
     });
 }
 
-//Create album code here - needs to be moved to individual artist page.
-/*     
-    <section id='addAlbum'>
-         <label><strong>Name: </strong></label>
-         <input type='text' id='albumTitle' placeholder='Enter the album title.' />
-         <input type='text' id='albumSong' placeholder='Enter the first song on the album.' />
-         <button id='btnAddAlbum'>Add Album</button>
-    </section> 
-*/
+export function setupAlbumDeleteButton(){
+    let albumDeleteButtons = document.querySelectorAll(".albumDelete");
 
-function SetupAlbumDelete() {
-    //Steps:
-    //1. Query selector all buttons with artist_delete class
-    //2. Use foreach loop to add eventlistener to all buttons
-    //3. Use API to run up a delete function to the server.
+    albumDeleteButtons.forEach(albumDeleteButton => {
+        albumDeleteButton.addEventListener('click', function(event){
+            console.log("delete button clicked");
+            let albumId = event.target.id;
+            
+
+            api.deleteRequest(CONSTANTS.AlbumAPIURL, albumId, data => {
+                CONSTANTS.content.innerHTML = displayAlbums(data);
+                setupAlbumDeleteButton();
+                setupAlbumLinks();
+            });
+        });
+    });
 }
 
-// function SetupAddAlbum() {
-//     const btnAddAlbum = document.getElementById("btnAddAlbum");
-//     btnAddAlbum.addEventListener("click", function () {
-//         console.log("Add album button hooked up!");
-//         const newAlbum = {
-//             Title: document.getElementById("albumTitle").value
-//         }
 
-//         api.postRequest(CONSTANTS.AlbumAPIURL, newAlbum, data => {
-//             CONSTANTS.title.innerText = "Album Details";
-//             CONSTANTS.tabTitle.innerText = "Album Details";
-//             CONSTANTS.content.innerHTML = `
-//                 Album Details page goes here
-//             `;
-
-//         });
-//     });
-// }
