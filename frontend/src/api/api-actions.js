@@ -1,6 +1,7 @@
 export default {
     getRequest,
-    postRequest
+    postRequest,
+    deleteRequest
 }
 
 function getRequest(location, callback){
@@ -21,6 +22,20 @@ function postRequest(location, requestBody, callback){
             "Content-Type": "application/json"
         },
         body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        callback(data);
+    })
+    .catch(err => console.log(err));
+}
+
+function deleteRequest(location, id, callback){
+    fetch(`${location}${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type" : "application/json"
+        }
     })
     .then(response => response.json())
     .then(data => {
