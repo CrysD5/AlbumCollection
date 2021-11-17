@@ -6,7 +6,8 @@ import artists, { displayArtists } from "./artists";
 export default {
     artistDetails,
     SetupAddAlbum,
-    SetupEditButton
+    SetupEditButton,
+    setupNavToAlbum   
 }
 
 function artistDetails(artist) {
@@ -26,7 +27,8 @@ function artistDetails(artist) {
             <ol>
                 ${artist.albums.map(album => {
                     return `
-                        <li>${album.title}</li>
+                    <li><span class="navToAlbum">${albums.title}</span>         
+                    <input type='hidden' value= '${albums.id}'/></li>
                     `
                 }).join('')}
             </ol>
@@ -120,3 +122,24 @@ function SetupEditButton() {
         });
     });
 }
+
+ function setupNavToAlbum() {
+     let navToAlbum = document.querySelectorAll(".navToAlbum");
+     console.log(navToAlbum);
+     navToAlbum.forEach(albumLink => {
+
+         albumLink.addEventListener("click", function (evt) {
+
+             let albumId = this.nextElementSibling.value;
+             console.log("Album Id:" + albumId);
+
+             //API Call
+             api.getRequest(CONSTANTS.AlbumAPIURL + albumId, data => {
+                 console.log(data);
+                 CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
+
+                 //also our setupEditBtn function goes here as well! :)
+             });
+         });
+     });
+ }

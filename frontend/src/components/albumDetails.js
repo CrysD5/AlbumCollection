@@ -12,6 +12,11 @@ function albumDetails(album)
         <h1>Album Details</h1>
         <h4>Album Title: ${album.title}</h4>
         <p>Artist: ${album.artist.name}</p>
+        <ol>Songs: ${album.songs.map(song => {
+            return `
+            <li>${song.title}</li>
+            </ol>`
+        }).join('') }
         <p>Record Label: ${album.recordLabel}</p>
         <p>Release Year:  ${album.releaseYear}</p>
         <p>Genre: ${album.genre}</p>
@@ -22,6 +27,29 @@ function albumDetails(album)
         <button id="btnAddReview">Add a review!</button>
         `
 }
+
+<ol>
+
+  Reviews: ${album.reviews.map(review => {
+              return `
+
+                      <ol>
+      <li>${review.albumId.title}</li>
+          <ul>
+              <li>${review.reviewerName}
+              <ul>
+              <li>${review.content}</li>
+              <li>${review.reviewDate}</li>
+              </ul>
+              </li>
+          </ul>
+      </li>
+</ol>              
+             `
+
+
+        }).join('')
+    }
 
 //Create review needs:
 //>>1. HTML representing the form to create a review. 

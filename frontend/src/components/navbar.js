@@ -1,14 +1,16 @@
 import * as CONSTANTS from "../components/constants";
 import Artists from "../components/artists";
 import Albums from "../components/albums";
+import Reviews from "../components/reviews";
 import api from "../api/api-actions";
-import albums from "../components/albums";
+import artistDetails from "./artistDetails";
 
 export default {
     setUpNavBar,
     setupHome,
     setupArtists,
-    setupAlbums
+    setupAlbums,
+    setupReviews
 }
 
 export function setUpNavBar(){
@@ -17,6 +19,7 @@ export function setUpNavBar(){
         <li id="navHome">Home</li>
         <li id="navArtists">Artists</li>
         <li id="navAlbums">Albums</li>
+        
     </ul>
     `;
 }
@@ -42,6 +45,7 @@ function setupArtists() {
             CONSTANTS.content.innerHTML = Artists.displayArtists(data);
             Artists.setupArtistLinks();
             Artists.SetupAddArtist();
+            
         })
     })
 }
@@ -56,6 +60,19 @@ function setupAlbums() {
             CONSTANTS.content.innerHTML = Albums.displayAlbums(data);
             Albums.setupAlbumLinks();
             Albums.setupAlbumDeleteButton();
+        })
+    })
+}
+
+function setupReviews() {
+    const btnReviews = document.getElementById("navReviews");
+    btnReviews.addEventListener("click", function(){
+        console.log("Review display button hooked up!");
+        api.getRequest(CONSTANTS.ReviewAPIURL, data =>{
+            CONSTANTS.title.innerText = "All Reviews";
+            CONSTANTS.tabTitle.innerText = "Reviews";
+            CONSTANTS.content.innerHTML = Reviews.displayReviews(data);
+            Reviews.setupReviewLinks(); 
         })
     })
 }

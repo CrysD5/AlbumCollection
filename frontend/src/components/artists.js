@@ -28,11 +28,14 @@ export function displayArtists(artists) {
                         <input type='hidden' value='${artist.id}' />
                     </h4>
                 </li>
+                
             `;
         }).join('')}
     </ol>
     `;
 }
+
+
 
 function SetupDeleteButton() {
     //Steps:
@@ -47,7 +50,7 @@ function setupArtistLinks() {
     let artistLinks = document.querySelectorAll(".artistName");
     artistLinks.forEach(artistLink => {
 
-        artistLink.addEventListener("click", function(evt){
+        artistLink.addEventListener("click", function (evt) {
 
             let artistId = this.nextElementSibling.value;
             console.log("Artist ID:" + artistId);
@@ -65,7 +68,7 @@ function setupArtistLinks() {
 
 function SetupAddArtist() {
     const btnAddArtist = document.getElementById("btnAddArtist");
-    btnAddArtist.addEventListener("click", function(){
+    btnAddArtist.addEventListener("click", function () {
         const newArtist = {
             Name: document.getElementById("artistName").value,
             ArtistLabel: document.getElementById("artistLabel").value
@@ -78,6 +81,7 @@ function SetupAddArtist() {
             //Setup edit button function also goes here.
             CONSTANTS.content.innerHTML = artistDetails.artistDetails(data);
             artistDetails.SetupEditButton();
+            artistDetails.setupNavToAlbum();
         });
     });
 

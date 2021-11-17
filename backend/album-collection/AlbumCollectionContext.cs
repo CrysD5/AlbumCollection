@@ -53,10 +53,10 @@ namespace album_collection
                    );
 
             builder.Entity<Review>().HasData(
-                   new Review() { Id = 1, AlbumId = 4, Content = "Sample Review for now", ReviewerName = "Dan F." },
-                   new Review() { Id = 2, AlbumId = 3, Content = "Sample Review for now", ReviewerName = "Eliza L." },
-                   new Review() { Id = 3, AlbumId = 2, Content = "Sample Review for now", ReviewerName = "Ziyah F." },
-                   new Review() { Id = 4, AlbumId = 1, Content = "Sample Review for now", ReviewerName = "Crys D." }
+                   new Review() { Id = 1, AlbumId = 4, Content = "Sample Review for now", ReviewerName = "Dan F.", ReviewDate = DateTime.Now },
+                   new Review() { Id = 2, AlbumId = 3, Content = "Sample Review for now", ReviewerName = "Eliza L.", ReviewDate = DateTime.Now },
+                   new Review() { Id = 3, AlbumId = 2, Content = "Sample Review for now", ReviewerName = "Ziyah F.", ReviewDate = DateTime.Now },
+                   new Review() { Id = 4, AlbumId = 1, Content = "Sample Review for now", ReviewerName = "Crys D.", ReviewDate = DateTime.Now }
                    );
 
             

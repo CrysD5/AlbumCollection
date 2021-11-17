@@ -19,6 +19,7 @@ export function displayAlbums(albums) {
             <span class = "albumDetails">
                 ${album.title}
             </span>
+
             <input type='hidden' value='${album.id}' />
             <button id="${album.id}" class="albumDelete">delete</button>
             </h4>
