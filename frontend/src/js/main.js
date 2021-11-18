@@ -1,5 +1,4 @@
 import H from "../components/navbar";
-import * as CONSTANTS from "../components/constants";
 
 const navbar = document.getElementById("navbar");
 

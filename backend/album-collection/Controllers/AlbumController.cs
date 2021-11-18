@@ -55,6 +55,7 @@ namespace album_collection.Controllers
 
             return album;
         }
+
         [HttpDelete("{id}")]
         public ActionResult<List<Album>> Delete(int id)
         {

@@ -21,8 +21,6 @@
     z-index: -1;
 }
 
-
-
 li h4 {
     cursor: pointer;
 }
@@ -45,8 +43,13 @@ input {
     color: black;    
 }
 
+#navbar {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
 /* All of our li elements will have a list style type of none
 all of our input boxes will have rounded corners and lowered opacity
 all of our text will be white and same font family
 all buttons will have icons*/
-

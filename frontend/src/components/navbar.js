@@ -3,7 +3,6 @@ import Artists from "../components/artists";
 import Albums from "../components/albums";
 import Reviews from "../components/reviews";
 import api from "../api/api-actions";
-import artistDetails from "./artistDetails";
 
 export default {
     setUpNavBar,
