@@ -12,18 +12,14 @@
     object-fit: cover;
     object-position: 50% 5%;
     background-image: url('/img/recordShopGirl.jpg');
-    filter: contrast(-200%); 
-    filter: opacity(25%);
-    filter: saturate(); 
+    background-repeat: no-repeat;
+    background-size: 1550px 1200px;
+    /*filter: contrast();*/
+    filter: opacity(75%);
+    /*filter: saturate();/* 
     z-index: -1;
 }
 
-/*#bg img {
-    filter: contrast(-200%); 
-    filter: drop-shadow();
-    filter: opacity(25%);
-    filter: saturate(); 
-}*/
 li h4 {
     cursor: pointer;
 }
