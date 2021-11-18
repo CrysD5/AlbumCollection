@@ -35,10 +35,12 @@ namespace album_collection.Controllers
         [HttpPost]
         public ActionResult<Album> Post([FromBody]Album album)
         {
-        _db.Albums.Add(album);
-        _db.SaveChanges();
+            _db.Albums.Add(album);
+            _db.SaveChanges();
 
-        return album;
+            album.Artist = _db.Artists.Find(album.ArtistId);
+
+            return album;
         }
 
         [HttpPut("{id}")]
