@@ -31,7 +31,7 @@ function artistDetails(artist) {
                 ${artist.albums.map(album => {
                     return `
                     <li><span class="navToAlbum">${album.title}</span>         
-                    <input type='hidden' value= '${album.id}'/></li>
+                    <input type='hidden' value='${album.id}'/></li>
                     `
                 }).join('')}
             </ol>

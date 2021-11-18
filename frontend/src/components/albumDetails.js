@@ -5,7 +5,7 @@ export default {
     albumDetails,
     addReview,
     setupSongLinks,
-    addSong,
+    //addSong,
     SetupAlbumEditButton
 }
 
@@ -42,7 +42,8 @@ function albumDetails(album) {
         <h3>Artist: ${album.artist.name}</h3>
         <p>Record Label: ${album.recordLabel}</p>
         <p>Release Year:  ${album.releaseYear}</p>
-        <p>Genre: ${album.genre}</p>       
+        <p>Genre: ${album.genre}</p> 
+        <button id="btnEditAlbum">Edit</button>      
     <ol>
         ${album.songs.map(song => {
             return `
@@ -109,7 +110,7 @@ function addSong() {
             CONSTANTS.content.innerHTML = albumDetails(album);
             addReview();
             setupSongLinks();
-            addSong();
+            //addSong();
             SetupAlbumEditButton();
         });
     });
@@ -140,7 +141,7 @@ function addReview() {
             CONSTANTS.content.innerHTML = albumDetails(album);
             addReview();
             setupSongLinks();
-            addSong();
+            //addSong();
             SetupAlbumEditButton();
         });
     });
@@ -149,15 +150,17 @@ function addReview() {
 function EditAlbum(album) {
     CONSTANTS.title.innerText = "Edit Album";
     CONSTANTS.tabTitle.innerText = "Edit Album";
-
+    console.log('in edit album');
+    console.log(album);
     return `
         <section id="editAlbumForm">
             <input type='hidden' value='${album.id}' id='album_id' />
             <input type='hidden' value='${album.artistId}' id='artist_id' />
-            <label><strong>Title: </strong></label><input type='text' id='albumTitle' value: '${album.title}' placeholder='Enter the album title.' />
-            <label><strong>Record Label: </strong></label><input type='text' value: '${album.recordLabel}' id='albumRecordLabel' placeholder='Enter the record label of the album.' />
-            <label><strong>Release Year: </strong></label><input type='text' id='albumReleaseYear' value: '${album.releaseYear}' placeholder='Enter the album release year.' />
-            <label><strong>Genre: </strong></label><input type='text' id='albumGenre' value: '${album.genre}' placeholder='Enter the genre of the album.' />
+            <label><strong>Title: </strong></label><input type='text' id='albumTitle' value='${album.title}' placeholder='Enter the album title.' />
+            <label><strong>Record Label: </strong></label><input type='text' value='${album.recordLabel}' id='albumRecordLabel' placeholder='Enter the record label of the album.' />
+            <label><strong>Release Year: </strong></label><input type='text' id='albumReleaseYear' value='${album.releaseYear}' placeholder='Enter the album release year.' />
+            
+            <label><strong>Genre: </strong></label><input type='text' id='albumGenre' value='${album.genre}' placeholder='Enter the genre of the album.' />
 
         </section>
         <button id="btnSaveAlbum">Save Changes</button>
@@ -174,6 +177,7 @@ function SetupAlbumSaveButton() {
 
         const editedAlbum = {
             Title: document.getElementById("albumTitle").value,
+            Id: albumId,
             ArtistId: artistId,
             RecordLabel: document.getElementById("albumRecordLabel").value,
             ReleaseYear: document.getElementById("albumReleaseYear").value,
@@ -181,10 +185,14 @@ function SetupAlbumSaveButton() {
         }
 
         api.putRequest(CONSTANTS.AlbumAPIURL, albumId, editedAlbum, album => {
+            console.log("Album.artistId: " + album.artistId);
+            console.log("AlbumID: " + album.id);
             CONSTANTS.content.innerHTML = albumDetails(album);
+            console.log("Album.artistID: " + album.artistId);
+            console.log("AlbumId: " + album.id);
             addReview();
             setupSongLinks();
-            addSong();
+            //addSong();
             SetupAlbumEditButton();
         });
     });
@@ -194,7 +202,8 @@ function SetupAlbumEditButton() {
     let albumId = document.getElementById("album_id").value;
     let editBtn = document.getElementById("btnEditAlbum");
     editBtn.addEventListener("click", function(){
-        api.getRequest(CONSTANTS.ArtistAPIURL + albumId, album => {
+        api.getRequest(CONSTANTS.AlbumAPIURL + albumId, album => {
+            console.log("retrieved album" + album);
             CONSTANTS.content.innerHTML = EditAlbum(album);
             SetupAlbumSaveButton();
         });

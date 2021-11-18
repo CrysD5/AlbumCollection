@@ -43,7 +43,7 @@ export function setupAlbumLinks() {
             api.getRequest(CONSTANTS.AlbumAPIURL + albumId, data => {
                 CONSTANTS.content.innerHTML = albumDetails.albumDetails(data);
                 albumDetails.addReview();
-                albumDetails.addSong();
+                //albumDetails.addSong();
                 albumDetails.setupSongLinks();
                 albumDetails.SetupAlbumEditButton();
 

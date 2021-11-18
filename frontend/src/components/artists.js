@@ -70,7 +70,7 @@ function setupArtistLinks() {
 
         artistLink.addEventListener("click", function (evt) {
 
-            let artistId = this.nextElementSibling.value;
+            let artistId = this.nextElementSibling.id;
             console.log("Artist ID:" + artistId);
 
             //API Call
