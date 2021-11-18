@@ -33,7 +33,7 @@
  }
  
  function setupReviewLinks(){
-     let reviewLinks = document.querySelectorAll(".reviewrName");
+     let reviewLinks = document.querySelectorAll(".reviewerName");
      reviewLinks.forEach(reviewLink => {
 
          reviewLink.addEventListener("click", function(evt) {
@@ -47,5 +47,5 @@
             });
          });
      });
- }
+}
 

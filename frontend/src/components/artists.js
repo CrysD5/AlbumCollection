@@ -4,10 +4,12 @@ import artistDetails from "../components/artistDetails";
 
 export default {
     displayArtists,
-    SetupDeleteButton,
+    SetupArtistDeleteButton,
     SetupAddArtist,
     setupArtistLinks
 }
+
+//Add artists works great!!
 
 export function displayArtists(artists) {
     return `
@@ -25,7 +27,7 @@ export function displayArtists(artists) {
                 <li>
                     <h4>
                         <span class="artistName">${artist.name}</span>
-                        <input type='hidden' value='${artist.id}' />
+                        <button id="${artist.id}" class="artistDelete">delete</button>
                     </h4>
                 </li>
                 
@@ -37,11 +39,27 @@ export function displayArtists(artists) {
 
 
 
-function SetupDeleteButton() {
+function SetupArtistDeleteButton() {
     //Steps:
     //1. Query selector all buttons with artist_delete class
     //2. Use foreach loop to add eventlistener to all buttons
     //3. Use API to run up a delete function to the server.
+
+    let artistDeleteButtons = document.querySelectorAll(".artistDelete");
+
+    artistDeleteButtons.forEach(artistDeleteButton => {
+        artistDeleteButton.addEventListener('click', function (event) {
+            console.log("delete button clicked");
+            let artistId = event.target.id;
+
+
+            api.deleteRequest(CONSTANTS.ArtistAPIURL, artistId, data => {
+                CONSTANTS.content.innerHTML = displayArtists(data);
+                SetupAddArtist();
+                setupArtistLinks();
+            });
+        });
+    });
 }
 
 //DON'T FORGET TO ALSO CHANGE SETUPADDALBUM AS WELL IF THIS API CALL DOESN'T WORK LOL

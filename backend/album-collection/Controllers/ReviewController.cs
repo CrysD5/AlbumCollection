@@ -20,14 +20,15 @@ namespace album_collection.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Review> Post([FromBody] Review review)
+        public ActionResult<Album> Post([FromBody] Review review)
         {
             review.ReviewDate = DateTime.Now;
             _db.Reviews.Add(review);
             _db.SaveChanges();
 
+            Album album = _db.Albums.Find(review.AlbumId);
 
-            return review;
+            return album;
         }
 
         [HttpPut("{id}")]

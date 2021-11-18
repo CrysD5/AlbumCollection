@@ -9,6 +9,10 @@ export default {
     setupNavToAlbum   
 }
 
+//CANNOT EDIT ARTISTS: When trying, artist name and record label is undefined.
+
+//Cannot add albums - same "albums.artist is undefined" error.
+
 function artistDetails(artist) {
 
     console.log(artist);
@@ -53,9 +57,6 @@ function SetupAddAlbum() {
      btnAddAlbum.addEventListener("click", function () {
          console.log("Add album button hooked up!");
 
-         //need analog to getelementbyid?
-
-
          const newAlbum = {
              Title: document.getElementById("albumTitle").value,
              ArtistId: document.getElementById("artist_id").value,
@@ -70,6 +71,8 @@ function SetupAddAlbum() {
              CONSTANTS.content.innerHTML = albumDetails.albumDetails(data);
              albumDetails.addReview();
              albumDetails.setupSongLinks();
+             albumDetails.SetupAlbumEditButton();
+
          });
      });
 }
@@ -144,9 +147,8 @@ function SetupEditButton() {
                  CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
                  albumDetails.setupSongLinks();
                  albumDetails.addReview();
-
-                 //also our setupEditBtn function goes here as well! :)
-                 albumDetails.SetupEditButton();
+                 //albumDetails.addSong();
+                 albumDetails.SetupAlbumEditButton();
              });
          });
      });

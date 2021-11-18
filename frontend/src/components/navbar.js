@@ -45,7 +45,7 @@ function setupArtists() {
             CONSTANTS.content.innerHTML = Artists.displayArtists(data);
             Artists.setupArtistLinks();
             Artists.SetupAddArtist();
-            
+            Artists.SetupArtistDeleteButton();
         })
     })
 }

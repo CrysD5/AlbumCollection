@@ -50,6 +50,7 @@ namespace album_collection.Controllers
             {
                 _db.Albums.Update(album);
                 _db.SaveChanges();
+                album.Artist = _db.Artists.Find(album.ArtistId);
             }
 
             return album;
@@ -59,6 +60,7 @@ namespace album_collection.Controllers
         {
             var album = _db.Albums.Find(id);
             _db.Albums.Remove(album);
+            _db.SaveChanges();
             return _db.Albums.ToList();
         }
 
