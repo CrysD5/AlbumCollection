@@ -14,11 +14,14 @@
     background-image: url('/img/recordShopGirl.jpg');
     background-repeat: no-repeat;
     background-size: 1550px 1200px;
-    /*filter: contrast();*/
-    filter: opacity(75%);
-    /*filter: saturate();/* 
+    filter: contrast(50%);
+    filter: brightness(80%);
+    /* filter: opacity(75%); */
+    filter: saturate(150%);
     z-index: -1;
 }
+
+
 
 li h4 {
     cursor: pointer;
@@ -39,6 +42,7 @@ button {
 input {
     border-radius: 12px;
     cursor: pointer;
+    color: black;    
 }
 
 /* All of our li elements will have a list style type of none

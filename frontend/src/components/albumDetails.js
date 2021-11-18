@@ -32,11 +32,6 @@ function albumDetails(album) {
         <p>Record Label: ${album.recordLabel}</p>
         <p>Release Year:  ${album.releaseYear}</p>
         <p>Genre: ${album.genre}</p>       
-             
-        
-        
-
-   
     <ol>
         ${album.songs.map(song => {
             return `
