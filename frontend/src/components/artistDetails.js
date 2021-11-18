@@ -147,6 +147,7 @@ function SetupEditButton() {
                  albumDetails.addReview();
 
                  //also our setupEditBtn function goes here as well! :)
+                 albumDetails.SetupEditButton();
              });
          });
      });

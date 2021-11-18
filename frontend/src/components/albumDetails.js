@@ -8,6 +8,23 @@ export default {
 }
 
 function albumDetails(album) {
+
+    if(album.songs == null){
+        album.songs = [];
+    }
+
+    if(album.reviews == null){
+        album.reviews = [];
+    }
+
+    // <h4> Songs: </h4>
+    //     <section id='addSong'>
+    //     <label><strong>Title: </strong></label>
+    //     <input type='text' id='songTitle' placeholder='Enter song title here.' />
+    //     <button id='btnAddSong'>Add Song</button>
+    // </section>
+    //carlos said remove for now cuz its a stretch task and to focus on required
+
     return ` 
         <h1>Album Details</h1>
         <h2>Album Title: ${album.title}</h2>
@@ -17,12 +34,7 @@ function albumDetails(album) {
         <p>Genre: ${album.genre}</p>       
              
         
-        <h4> Songs: </h4>
-        <section id='addSong'>
-        <label><strong>Title: </strong></label>
-        <input type='text' id='songTitle' placeholder='Enter song title here.' />
-        <button id='btnAddSong'>Add Song</button>
-    </section>
+        
 
    
     <ol>
