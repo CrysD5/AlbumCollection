@@ -45,15 +45,21 @@ function artistDetails(artist) {
         `;
 }
 
+//
+// this hidden artist id is throwing errors need to create drop down list of artist names attached to id's to choose from to avoid errors
+//
+
 function SetupAddAlbum() {
     const btnAddAlbum = document.getElementById("btnAddAlbum");
      btnAddAlbum.addEventListener("click", function () {
          console.log("Add album button hooked up!");
 
          //need analog to getelementbyid?
+
+
          const newAlbum = {
              Title: document.getElementById("albumTitle").value,
-             ArtistId: document.getElementById("artistId").value,
+             ArtistId: document.getElementById("artist_id").value,
              RecordLabel: document.getElementById("albumRecordLabel").value,
              ReleaseYear: document.getElementById("albumReleaseYear").value,
              Genre: document.getElementById("albumGenre").value,
@@ -64,7 +70,7 @@ function SetupAddAlbum() {
              CONSTANTS.tabTitle.innerText = "Album Details";
              CONSTANTS.content.innerHTML = albumDetails.albumDetails(data);
              albumDetails.addReview();
-
+             albumDetails.setupSongLinks();
          });
      });
 }
@@ -137,6 +143,8 @@ function SetupEditButton() {
              api.getRequest(CONSTANTS.AlbumAPIURL + albumId, data => {
                  console.log(data);
                  CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
+                 albumDetails.setupSongLinks();
+                 albumDetails.addReview();
 
                  //also our setupEditBtn function goes here as well! :)
              });

@@ -32,9 +32,9 @@ export function displayAlbums(albums) {
 
 export function setupAlbumLinks() {
     let albumLinks = document.querySelectorAll(".albumDetails");
-        albumLinks.forEach(albumLink => {
+    albumLinks.forEach(albumLink => {
 
-        albumLink.addEventListener("click", function(evt){
+        albumLink.addEventListener("click", function (evt) {
 
             let albumId = this.nextElementSibling.value;
             console.log("Album Id:" + albumId);
@@ -42,21 +42,22 @@ export function setupAlbumLinks() {
             //API Call
             api.getRequest(CONSTANTS.AlbumAPIURL + albumId, data => {
                 CONSTANTS.content.innerHTML = albumDetails.albumDetails(data);
-                 albumDetails.addReview();
+                albumDetails.addReview();
+
                 //also our setupEditBtn function goes here as well! :)
             });
         });
     });
 }
 
-export function setupAlbumDeleteButton(){
+export function setupAlbumDeleteButton() {
     let albumDeleteButtons = document.querySelectorAll(".albumDelete");
 
     albumDeleteButtons.forEach(albumDeleteButton => {
-        albumDeleteButton.addEventListener('click', function(event){
+        albumDeleteButton.addEventListener('click', function (event) {
             console.log("delete button clicked");
             let albumId = event.target.id;
-            
+
 
             api.deleteRequest(CONSTANTS.AlbumAPIURL, albumId, data => {
                 CONSTANTS.content.innerHTML = displayAlbums(data);
