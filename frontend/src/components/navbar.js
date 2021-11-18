@@ -28,9 +28,9 @@ function setupHome(){
     const btnHome = document.getElementById("navHome");
     btnHome.addEventListener("click", function(){
         CONSTANTS.tabTitle.innerText="Home";
-        CONSTANTS.title.innerText ="Home";
+       // CONSTANTS.title.innerText ="Home";
         CONSTANTS.content.innerHTML =`
-            <p>Welcome back Home!</p>
+            <h1>Surviving With Google Presents</h1>
         `;
     });
 }

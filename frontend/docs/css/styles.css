@@ -1,0 +1,52 @@
+* {
+    font-family: 'Roboto', sans-serif; 
+    color: white;
+}
+
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 5%;
+    background-image: url('/img/recordShopGirl.jpg');
+    filter: contrast(-200%); 
+    filter: opacity(25%);
+    filter: saturate(); 
+    z-index: -1;
+}
+
+/*#bg img {
+    filter: contrast(-200%); 
+    filter: drop-shadow();
+    filter: opacity(25%);
+    filter: saturate(); 
+}*/
+li h4 {
+    cursor: pointer;
+}
+
+#navbar ul li {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+button {
+    border-radius: 12px;
+    background-color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input {
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* All of our li elements will have a list style type of none
+all of our input boxes will have rounded corners and lowered opacity
+all of our text will be white and same font family
+all buttons will have icons*/
+
