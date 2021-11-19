@@ -63,7 +63,7 @@ function albumDetails(album) {
                     <li>${review.reviewerName}
                         <ul>
                             <li>${review.content}</li>
-                            <li>${review.reviewDate}</li>
+                            <li>${review.reviewDate.ToLocalDateString}</li>
                         </ul>
                     </li>
                 </ul>          

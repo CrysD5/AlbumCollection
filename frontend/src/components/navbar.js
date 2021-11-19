@@ -27,7 +27,7 @@ function setupHome(){
     const btnHome = document.getElementById("navHome");
     btnHome.addEventListener("click", function(){
         CONSTANTS.tabTitle.innerText="Home";
-       // CONSTANTS.title.innerText ="Home";
+        CONSTANTS.title.innerText =" ";
         CONSTANTS.content.innerHTML =`
             <h1>Surviving With Google Presents</h1>
         `;
@@ -55,7 +55,7 @@ function setupAlbums() {
         console.log("Album Display button hooked up!");
         api.getRequest(CONSTANTS.AlbumAPIURL, data => {
             CONSTANTS.title.innerText = "All Albums";
-            CONSTANTS.tabTitle.innerText = "Albums";
+            CONSTANTS.tabTitle.innerText = "All Albums";
             CONSTANTS.content.innerHTML = Albums.displayAlbums(data);
             Albums.setupAlbumLinks();
             Albums.setupAlbumDeleteButton();
