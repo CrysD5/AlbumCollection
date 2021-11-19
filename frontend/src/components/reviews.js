@@ -19,7 +19,7 @@
     <ol>
         ${reviews.map(review => {
             return `
-                <li>
+                <li class="indiv-review">
                     <h4>
                         <span class="reviewerName">${review.reviewerName}</span>
                         <input type='hidden' value='${review.id}' />
@@ -33,7 +33,7 @@
  }
  
  function setupReviewLinks(){
-     let reviewLinks = document.querySelectorAll(".reviewrName");
+     let reviewLinks = document.querySelectorAll(".reviewerName");
      reviewLinks.forEach(reviewLink => {
 
          reviewLink.addEventListener("click", function(evt) {
@@ -47,5 +47,5 @@
             });
          });
      });
- }
+}
 

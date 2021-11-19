@@ -50,15 +50,18 @@ namespace album_collection.Controllers
             {
                 _db.Albums.Update(album);
                 _db.SaveChanges();
+                album.Artist = _db.Artists.Find(album.ArtistId);
             }
 
             return album;
         }
+
         [HttpDelete("{id}")]
         public ActionResult<List<Album>> Delete(int id)
         {
             var album = _db.Albums.Find(id);
             _db.Albums.Remove(album);
+            _db.SaveChanges();
             return _db.Albums.ToList();
         }
 

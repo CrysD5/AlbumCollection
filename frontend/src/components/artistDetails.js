@@ -1,7 +1,6 @@
 import albumDetails from "./albumDetails";
 import api from "../api/api-actions";
 import * as CONSTANTS from "../components/constants";
-import artists, { displayArtists } from "./artists";
 
 export default {
     artistDetails,
@@ -9,6 +8,10 @@ export default {
     SetupEditButton,
     setupNavToAlbum   
 }
+
+//CANNOT EDIT ARTISTS: When trying, artist name and record label is undefined.
+
+//Cannot add albums - same "albums.artist is undefined" error.
 
 function artistDetails(artist) {
 
@@ -28,7 +31,7 @@ function artistDetails(artist) {
                 ${artist.albums.map(album => {
                     return `
                     <li><span class="navToAlbum">${album.title}</span>         
-                    <input type='hidden' value= '${album.id}'/></li>
+                    <input type='hidden' value='${album.id}'/></li>
                     `
                 }).join('')}
             </ol>
@@ -54,9 +57,6 @@ function SetupAddAlbum() {
      btnAddAlbum.addEventListener("click", function () {
          console.log("Add album button hooked up!");
 
-         //need analog to getelementbyid?
-
-
          const newAlbum = {
              Title: document.getElementById("albumTitle").value,
              ArtistId: document.getElementById("artist_id").value,
@@ -71,6 +71,8 @@ function SetupAddAlbum() {
              CONSTANTS.content.innerHTML = albumDetails.albumDetails(data);
              albumDetails.addReview();
              albumDetails.setupSongLinks();
+             albumDetails.SetupAlbumEditButton();
+
          });
      });
 }
@@ -145,9 +147,8 @@ function SetupEditButton() {
                  CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
                  albumDetails.setupSongLinks();
                  albumDetails.addReview();
-
-                 //also our setupEditBtn function goes here as well! :)
-                 albumDetails.SetupEditButton();
+                 //albumDetails.addSong();
+                 albumDetails.SetupAlbumEditButton();
              });
          });
      });

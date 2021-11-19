@@ -3,7 +3,6 @@ import Artists from "../components/artists";
 import Albums from "../components/albums";
 import Reviews from "../components/reviews";
 import api from "../api/api-actions";
-import artistDetails from "./artistDetails";
 
 export default {
     setUpNavBar,
@@ -28,7 +27,7 @@ function setupHome(){
     const btnHome = document.getElementById("navHome");
     btnHome.addEventListener("click", function(){
         CONSTANTS.tabTitle.innerText="Home";
-       // CONSTANTS.title.innerText ="Home";
+        CONSTANTS.title.innerText =" ";
         CONSTANTS.content.innerHTML =`
             <h1>Surviving With Google Presents</h1>
         `;
@@ -45,7 +44,7 @@ function setupArtists() {
             CONSTANTS.content.innerHTML = Artists.displayArtists(data);
             Artists.setupArtistLinks();
             Artists.SetupAddArtist();
-            
+            Artists.SetupArtistDeleteButton();
         })
     })
 }
@@ -56,7 +55,7 @@ function setupAlbums() {
         console.log("Album Display button hooked up!");
         api.getRequest(CONSTANTS.AlbumAPIURL, data => {
             CONSTANTS.title.innerText = "All Albums";
-            CONSTANTS.tabTitle.innerText = "Albums";
+            CONSTANTS.tabTitle.innerText = "All Albums";
             CONSTANTS.content.innerHTML = Albums.displayAlbums(data);
             Albums.setupAlbumLinks();
             Albums.setupAlbumDeleteButton();

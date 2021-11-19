@@ -27,12 +27,15 @@ namespace album_collection.Controllers
 
         
         [HttpPost]
-        public ActionResult<Song> Post([FromBody]Song song)
+        public ActionResult<Album> Post([FromBody]Song song)
         {
             _db.Songs.Add(song);
             _db.SaveChanges();
 
-            return song;
+            song.Album = _db.Albums.Find(song.AlbumId);
+            Album album = song.Album;
+
+            return album;
         }
 
         [HttpPut("{id}")]
@@ -52,6 +55,7 @@ namespace album_collection.Controllers
         {
             var artist = _db.Artists.Find(id);
             _db.Artists.Remove(artist);
+            _db.SaveChanges();
             return _db.Artists.ToList();
         }
     }
