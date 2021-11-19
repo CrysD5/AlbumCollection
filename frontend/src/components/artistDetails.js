@@ -9,20 +9,16 @@ export default {
     setupNavToAlbum   
 }
 
-//CANNOT EDIT ARTISTS: When trying, artist name and record label is undefined.
-
-//Cannot add albums - same "albums.artist is undefined" error.
-
 function artistDetails(artist) {
 
-    console.log(artist);
+    CONSTANTS.title.innerText = "Artist Details";
+    CONSTANTS.tabTitle.innerText = "Artist Details";
 
     if (artist.albums == null || artist.albums == undefined) {
         artist.albums = [];
     }
 
     return `
-       <h2>Artist Details</h2>
        <button id="btnEditArtist">Edit Artist</button>
        <h4>Artist Name:</h4> <span id="artistName">${artist.name}</span>
        <h4>Main Label:</h4> ${artist.artistLabel}
@@ -47,10 +43,6 @@ function artistDetails(artist) {
     </section> 
         `;
 }
-
-//
-// this hidden artist id is throwing errors need to create drop down list of artist names attached to id's to choose from to avoid errors
-//
 
 function SetupAddAlbum() {
     const btnAddAlbum = document.getElementById("btnAddAlbum");
@@ -77,11 +69,6 @@ function SetupAddAlbum() {
      });
 }
 
-//TO EDIT ARTIST
-//1. Function that sets up the HTML we will need. (EditArtist)
-//2. Function that does API call and sets up button. (SetupSaveButton)
-//3. Function that ties the above two together. (SetupEditButton)
-
 function EditArtist(artist) {
     CONSTANTS.title.innerText = "Edit Artist";
     CONSTANTS.tabTitle.innerText = "Edit Artist";
@@ -94,9 +81,7 @@ function EditArtist(artist) {
 
         </section>
         <button id="btnSaveArtist">Save Changes</button>
-    `;
-    
-    //add the option to delete albums to this page as well? 
+    `; 
 }
 
 function SetupArtistSaveButton() {
@@ -141,13 +126,11 @@ function SetupEditButton() {
              let albumId = this.nextElementSibling.value;
              console.log("Album Id:" + albumId);
 
-             //API Call
              api.getRequest(CONSTANTS.AlbumAPIURL + albumId, data => {
                  console.log(data);
                  CONSTANTS.content.innerHTML = albumDetails.AlbumDetails(data);
                  albumDetails.setupSongLinks();
                  albumDetails.addReview();
-                 //albumDetails.addSong();
                  albumDetails.SetupAlbumEditButton();
              });
          });

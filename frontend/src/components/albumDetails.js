@@ -5,18 +5,8 @@ export default {
     albumDetails,
     addReview,
     setupSongLinks,
-    //addSong,
     SetupAlbumEditButton
 }
-
-//Cannot edit albums: albums.artist is undefined (this may be a backend issue - 
-//Make sure our controller is set up correctly.)
-
-//Add album button completely broken.
-
-//Add songs button works fine.
-
-//Add reviews works fine.
 
 function albumDetails(album) {
 
@@ -34,7 +24,6 @@ function albumDetails(album) {
     //     <input type='text' id='songTitle' placeholder='Enter song title here.' />
     //     <button id='btnAddSong'>Add Song</button>
     // </section>
-    //carlos said remove for now cuz its a stretch task and to focus on required
 
     return ` 
         <h1>Album Details</h1>
@@ -110,20 +99,10 @@ function addSong() {
             CONSTANTS.content.innerHTML = albumDetails(album);
             addReview();
             setupSongLinks();
-            //addSong();
             SetupAlbumEditButton();
         });
     });
 }
-
-
-//Create review needs:
-//>>1. HTML representing the form to create a review. 
-//2. A function to hook up the button to the form and to do an api call (post).
-//3. A function to join these two items.
-
-//Review has
-//ReviewerName, Content, AlbumId, DateTime (automatic)
 
 function addReview() {
     const btnAddReview = document.getElementById("btnAddReview");
@@ -141,7 +120,6 @@ function addReview() {
             CONSTANTS.content.innerHTML = albumDetails(album);
             addReview();
             setupSongLinks();
-            //addSong();
             SetupAlbumEditButton();
         });
     });
@@ -165,8 +143,7 @@ function EditAlbum(album) {
         </section>
         <button id="btnSaveAlbum">Save Changes</button>
     `;
-    
-    //add the option to delete albums to this page as well? 
+     
 }
 
 function SetupAlbumSaveButton() {
@@ -192,7 +169,6 @@ function SetupAlbumSaveButton() {
             console.log("AlbumId: " + album.id);
             addReview();
             setupSongLinks();
-            //addSong();
             SetupAlbumEditButton();
         });
     });

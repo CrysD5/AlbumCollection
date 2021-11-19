@@ -9,8 +9,6 @@ export default {
     setupArtistLinks
 }
 
-//Add artists works great!!
-
 export function displayArtists(artists) {
     return `
     <section id='addArtist'>
@@ -40,10 +38,6 @@ export function displayArtists(artists) {
 
 
 function SetupArtistDeleteButton() {
-    //Steps:
-    //1. Query selector all buttons with artist_delete class
-    //2. Use foreach loop to add eventlistener to all buttons
-    //3. Use API to run up a delete function to the server.
 
     let artistDeleteButtons = document.querySelectorAll(".artistDelete");
 
@@ -61,8 +55,6 @@ function SetupArtistDeleteButton() {
         });
     });
 }
-
-//DON'T FORGET TO ALSO CHANGE SETUPADDALBUM AS WELL IF THIS API CALL DOESN'T WORK LOL
 
 function setupArtistLinks() {
     let artistLinks = document.querySelectorAll(".artistName");
@@ -93,10 +85,6 @@ function SetupAddArtist() {
         }
 
         api.postRequest(CONSTANTS.ArtistAPIURL, newArtist, data => {
-            CONSTANTS.title.innerText = "Artist Details";
-            CONSTANTS.tabTitle.innerText = "Artist Details";
-            //Display individual artist function is called here.
-            //Setup edit button function also goes here.
             CONSTANTS.content.innerHTML = artistDetails.artistDetails(data);
             artistDetails.SetupEditButton();
             artistDetails.setupNavToAlbum();
